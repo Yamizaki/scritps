@@ -1,0 +1,56 @@
+[
+    {
+        "label": "os",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "os",
+        "description": "os",
+        "detail": "os",
+        "documentation": {}
+    },
+    {
+        "label": "sys",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "sys",
+        "description": "sys",
+        "detail": "sys",
+        "documentation": {}
+    },
+    {
+        "label": "ctypes",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "ctypes",
+        "description": "ctypes",
+        "detail": "ctypes",
+        "documentation": {}
+    },
+    {
+        "label": "shutil",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "shutil",
+        "description": "shutil",
+        "detail": "shutil",
+        "documentation": {}
+    },
+    {
+        "label": "limpiar_carpeta",
+        "kind": 2,
+        "importPath": "limpiador_de_archivos",
+        "description": "limpiador_de_archivos",
+        "peekOfCode": "def limpiar_carpeta(ruta):\n    \"\"\"Elimina todo el contenido dentro de una carpeta sin borrar la carpeta principal\"\"\"\n    if os.path.exists(ruta):\n        for archivo in os.listdir(ruta):\n            archivo_path = os.path.join(ruta, archivo)\n            try:\n                if os.path.isfile(archivo_path) or os.path.islink(archivo_path):\n                    os.unlink(archivo_path)  # Eliminar archivos y enlaces simbólicos\n                elif os.path.isdir(archivo_path):\n                    shutil.rmtree(archivo_path)  # Eliminar carpetas y su contenido",
+        "detail": "limpiador_de_archivos",
+        "documentation": {}
+    },
+    {
+        "label": "solicitar_admin",
+        "kind": 2,
+        "importPath": "limpiador_de_archivos",
+        "description": "limpiador_de_archivos",
+        "peekOfCode": "def solicitar_admin():\n    \"\"\"Reinicia el script con privilegios de administrador si no los tiene\"\"\"\n    if not ctypes.windll.shell32.IsUserAnAdmin():\n        print(\"Solicitando permisos de administrador...\")\n        script = sys.executable\n        params = \" \".join([f'\"{arg}\"' for arg in sys.argv])\n        ctypes.windll.shell32.ShellExecuteW(None, \"runas\", script, params, None, 1)\n# Definir la ruta de la carpeta\nif __name__ == \"__main__\":\n    rutas_carpetas = [r\"C:\\Windows\\Prefetch\", r\"C:\\Windows\\Temp\", r\"C:\\Users\\USER\\AppData\\Local\\Temp\"]",
+        "detail": "limpiador_de_archivos",
+        "documentation": {}
+    }
+]
